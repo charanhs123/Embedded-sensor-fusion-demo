@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Sensor Fusion using Kalman Filter and Least Squares Fit
 
 This project demonstrates a simple embedded-style signal processing pipeline in C++14.
