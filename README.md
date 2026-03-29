@@ -173,15 +173,67 @@ Test coverage includes:
 * GoogleTest
 * Linux / WSL
 
+## Command-Line Options
+
+The demo supports configurable simulation parameters:
+
+```bash
+./sensor_fusion_demo --steps 50 --dt 0.1 --velocity 2.0 --noise-std 0.3 --csv results.csv
+```
+
+Example options:
+
+--steps number of simulation steps
+--dt sampling interval
+--velocity true signal velocity
+--noise-std measurement noise standard deviation
+--q-pos Kalman process noise for position
+--q-vel Kalman process noise for velocity
+--r Kalman measurement noise variance
+--csv write results to CSV file
+
+RTOS-oriented Variant
+
+A FreeRTOS-style version is included in rtos/ to demonstrate how the estimator can be partitioned into real-time tasks:
+
+SensorTask
+EstimationTask
+DiagnosticsTask
+
+The desktop build includes a stub executable for architectural demonstration:
+
+./sensor_fusion_freertos_stub
+
+---
+
+# 12. Why this makes the repo stronger
+
+This upgrade now shows:
+
+- you can build a **tool-like executable**, not just hardcoded code
+- you understand **parameterization and usability**
+- you can think in **RTOS task decomposition**
+- you can separate:
+  - data acquisition
+  - estimation
+  - diagnostics
+
+That is much closer to real embedded work.
+
+---
+
+# 13. Recommended commit message
+
+```bash
+git add .
+git commit -m "Add CLI configuration, CSV logging, and FreeRTOS-oriented demo
+```
+
 ## Future Improvements //TODO
 
 * CSV logging + Python visualization
 * Fixed-point Kalman filter (embedded optimization)
 * Real sensor integration (I2C / SPI)
-* RTOS-based version (FreeRTOS)
 * CAN-based distributed estimation
 
 ---
-
-
->>>>>>> 951462b57063869f01c7741b33bfec4656ad6f2d
