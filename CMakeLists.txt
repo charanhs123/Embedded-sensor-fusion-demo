@@ -6,8 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 option(ENABLE_TESTS "Build unit tests" ON)
+option(BUILD_FREERTOS_DEMO "Build FreeRTOS-style demo source stub" ON)
 
 add_library(sensor_fusion_lib
+    src/AppConfig.cpp
+    src/CsvLogger.cpp
     src/Kalman2State.cpp
     src/LeastSquaresFit.cpp
     src/SignalGenerator.cpp
@@ -20,6 +23,16 @@ add_executable(sensor_fusion_demo
 )
 
 target_link_libraries(sensor_fusion_demo PRIVATE sensor_fusion_lib)
+
+if(BUILD_FREERTOS_DEMO)
+    add_executable(sensor_fusion_freertos_stub
+        rtos/freertos_main.cpp
+    )
+
+    target_include_directories(sensor_fusion_freertos_stub PRIVATE include)
+    target_link_libraries(sensor_fusion_freertos_stub PRIVATE sensor_fusion_lib)
+    target_compile_definitions(sensor_fusion_freertos_stub PRIVATE FREERTOS_STUB_BUILD=1)
+endif()
 
 if(ENABLE_TESTS)
     include(FetchContent)
