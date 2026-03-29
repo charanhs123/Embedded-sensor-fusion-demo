@@ -206,29 +206,6 @@ The desktop build includes a stub executable for architectural demonstration:
 
 ---
 
-# 12. Why this makes the repo stronger
-
-This upgrade now shows:
-
-- you can build a **tool-like executable**, not just hardcoded code
-- you understand **parameterization and usability**
-- you can think in **RTOS task decomposition**
-- you can separate:
-  - data acquisition
-  - estimation
-  - diagnostics
-
-That is much closer to real embedded work.
-
----
-
-# 13. Recommended commit message
-
-```bash
-git add .
-git commit -m "Add CLI configuration, CSV logging, and FreeRTOS-oriented demo
-```
-
 ## Future Improvements //TODO
 
 * CSV logging + Python visualization
